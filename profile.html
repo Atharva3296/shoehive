@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOEHIVE - My Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"><img src="shoehive.png" alt="SHOEHIVE" width="100" height="50" border-radius="50%"></a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/">HOME</a>
+            <a href="/shop">SHOP</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle active">MY ACCOUNT</a>
+                <div class="dropdown-menu">
+                    <a href="/profile" class="active">Profile</a>
+                    <a href="/orders">Orders</a>
+                    <a href="/settings">Settings</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+
+        <div class="cart">
+            <span class="cart-amount">$0.00</span>
+            <div class="cart-icon">
+                <span class="cart-count">0</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM20 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg> 
+            </div>
+        </div>
+        
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="dark-mode-checkbox">
+            <label for="dark-mode-checkbox" class="dark-mode-label">
+                <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </label>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <h1 class="profile-title">My Account</h1>
+        
+        <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="profile">Profile</button>
+            <button class="profile-tab" data-tab="orders">Orders</button>
+            <button class="profile-tab" data-tab="settings">Settings</button>
+        </div>
+        
+        <div class="profile-content">
+            <!-- Profile Tab Content -->
+            <div class="tab-content active" id="profile-tab">
+                <div class="profile-grid">
+                    <div class="profile-sidebar">
+                        <div class="profile-avatar">
+                            <img id="profile-image" src="placeholder-avatar.jpg" alt="Profile Picture">
+                            <div class="avatar-overlay">
+                                <label for="avatar-upload" class="avatar-upload-label">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                        <circle cx="12" cy="13" r="4"></circle>
+                                    </svg>
+                                </label>
+                                <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        <h2 id="profile-name">John Doe</h2>
+                        <p id="profile-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc1c4c3c5ebced3cac6dbc7ce85c8c4c6">[email&#160;protected]</a></p>
+                        
+                        <div class="profile-info">
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Member since <span id="member-since">March 2023</span></span>
+                            </div>
+                            <div class="info-item" id="address-container">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span id="profile-address">123 Main St, City, Country</span>
+                            </div>
+                            <div class="info-item" id="phone-container">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                <span id="profile-phone">(123) 456-7890</span>
+                                <span id="phone-verified-badge" class="verification-badge">Verified</span>
+                            </div>
+                            <div class="info-item" id="dob-container">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span id="profile-dob">January 1, 1990</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="details-header">
+                            <h3>Profile Information</h3>
+                            <button id="edit-profile-btn" class="edit-button">Edit Profile</button>
+                        </div>
+                        
+                        <div id="profile-view" class="profile-view">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <h4>Full Name</h4>
+                                    <p id="view-name">John Doe</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Email</h4>
+                                    <p id="view-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ce6e3e4e2cce9f4ede1fce0e9a2efe3e1">[email&#160;protected]</a></p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Date of Birth</h4>
+                                    <p id="view-dob">January 1, 1990</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Address</h4>
+                                    <p id="view-address">123 Main St, City, Country</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h4>Phone Number</h4>
+                                    <p id="view-phone">(123) 456-7890</p>
+                                    <span id="view-phone-verified" class="verification-badge">Verified</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="profile-edit" class="profile-edit hidden">
+                            <div class="success-message" id="profile-success"></div>
+                            <div class="error-message" id="profile-error"></div>
+                            
+                            <form id="edit-profile-form">
+                                <div class="form-group">
+                                    <label for="edit-name">Full Name</label>
+                                    <input type="text" id="edit-name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="edit-email">Email</label>
+                                    <input type="email" id="edit-email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="edit-dob">Date of Birth</label>
+                                    <input type="date" id="edit-dob">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="edit-address">Address</label>
+                                    <input type="text" id="edit-address">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="edit-phone">Phone Number</label>
+                                    <input type="tel" id="edit-phone">
+                                    <button type="button" id="verify-phone-btn" class="verify-button">Verify Phone</button>
+                                </div>
+                                
+                                <div id="phone-verification-container" class="hidden">
+                                    <div class="form-group">
+                                        <label for="verification-code">Enter Verification Code</label>
+                                        <div class="verification-code-container">
+                                            <input type="text" id="verification-code" maxlength="6" placeholder="Enter 6-digit code">
+                                            <button type="button" id="submit-code-btn" class="verify-button">Submit</button>
+                                        </div>
+                                        <p class="verification-note">A 6-digit code has been sent to your phone number</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-buttons">
+                                    <button type="submit" class="save-button">Save Changes</button>
+                                    <button type="button" id="cancel-edit" class="cancel-button">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Orders Tab Content -->
+            <div class="tab-content" id="orders-tab">
+                <div class="orders-empty">
+                    <h3>You haven't placed any orders yet.</h3>
+                    <p>Once you place an order, you'll be able to track it here.</p>
+                    <a href="/shop" class="shop-now-button">Start Shopping</a>
+                </div>
+            </div>
+            
+            <!-- Settings Tab Content -->
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-section">
+                    <h3>Appearance</h3>
+                    <p>Customize the appearance of your account</p>
+                    
+                    <div class="appearance-options">
+                        <div class="appearance-option">
+                            <label for="theme-toggle">Dark Mode</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="theme-toggle">
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Password</h3>
+                    <p>Change your password to keep your account secure</p>
+                    <button class="settings-button" id="change-password-btn">Change Password</button>
+                    
+                    <div id="password-form-container" class="password-form-container hidden">
+                        <form id="change-password-form">
+                            <div class="success-message" id="password-success"></div>
+                            <div class="error-message" id="password-error"></div>
+                            
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-new-password">Confirm New Password</label>
+                                <input type="password" id="confirm-new-password" required>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="submit" class="save-button">Update Password</button>
+                                <button type="button" id="cancel-password" class="cancel-button">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <p>Manage your email notification preferences</p>
+                    
+                    <div class="notification-options">
+                        <div class="notification-option">
+                            <input type="checkbox" id="order-updates" checked>
+                            <label for="order-updates">Order Updates</label>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <input type="checkbox" id="promotions" checked>
+                            <label for="promotions">Promotions and Deals</label>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <input type="checkbox" id="new-products">
+                            <label for="new-products">New Product Arrivals</label>
+                        </div>
+                    </div>
+                    
+                    <button class="settings-button save-notifications">Save Preferences</button>
+                </div>
+                
+                <div class="settings-section danger-zone">
+                    <h3>Delete Account</h3>
+                    <p>Permanently delete your account and all associated data</p>
+                    <button class="delete-account-button" id="delete-account-btn">Delete Account</button>
+                    
+                    <div id="delete-confirmation" class="delete-confirmation hidden">
+                        <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                        <div class="confirmation-buttons">
+                            <button id="confirm-delete" class="confirm-delete-button">Yes, Delete My Account</button>
+                            <button id="cancel-delete" class="cancel-button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="profile.js"></script>
+</body>
+</html>
+

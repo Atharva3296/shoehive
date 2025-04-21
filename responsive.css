@@ -1,0 +1,328 @@
+/* Responsive CSS for SHOEHIVE */
+
+/* Tablet Styles (768px to 991px) */
+@media (max-width: 991px) {
+    /* Navigation */
+    .navbar {
+      padding: 0.8rem 1.5rem;
+    }
+    
+    .nav-links {
+      gap: 1rem;
+    }
+    
+    .nav-links a {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+    
+    /* Hero Section */
+    .shoe-container {
+      margin-left: 150px;
+      margin-top: -80px;
+    }
+    
+    .shoe-container img {
+      width: 600px;
+    }
+    
+    #airpro {
+      font-size: 70px;
+      margin-top: 60px;
+      margin-left: 120px;
+    }
+    
+    #believe {
+      font-size: 4.5em;
+      margin-top: 450px;
+      margin-left: 100px;
+    }
+    
+    #comfort {
+      font-size: 1.8em;
+      margin-left: 450px;
+    }
+    
+    /* Product Slider */
+    .slide {
+      min-width: 50%;
+      flex: 0 0 50%;
+    }
+    
+    /* Brand Grid */
+    .brand-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    
+    /* Contact Modal */
+    .contact-modal-content {
+      margin: 15% auto;
+      width: 80%;
+    }
+  }
+  
+  /* Mobile Styles (up to 767px) */
+  @media (max-width: 767px) {
+    /* Navigation */
+    .navbar {
+      padding: 0.8rem 1rem;
+      position: relative;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-toggle {
+      display: block;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      order: 3;
+    }
+    
+    .mobile-menu-toggle svg {
+      width: 24px;
+      height: 24px;
+      color: #333;
+    }
+    
+    /* Navigation Links */
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 0;
+    }
+    
+    .nav-links.active {
+      display: flex;
+    }
+    
+    .nav-links a {
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+    
+    /* Dropdown Menu */
+    .dropdown {
+      width: 100%;
+    }
+    
+    .dropdown-toggle {
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      display: block;
+    }
+    
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+      display: none;
+      opacity: 1;
+      transform: none;
+      transition: none;
+      border-top: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-menu a {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+    
+    /* Hero Section */
+    .shoe-container {
+      margin: 20px auto;
+      width: 100%;
+      text-align: center;
+      height: auto;
+    }
+    
+    .shoe-container img {
+      width: 90%;
+      max-width: 450px;
+    }
+    
+    #airpro {
+      font-size: 40px;
+      margin: 30px auto 0;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    
+    #believe {
+      font-size: 3em;
+      margin: 300px auto 0;
+      text-align: center;
+      letter-spacing: -2px;
+    }
+    
+    #comfort {
+      font-size: 1.2em;
+      margin: 10px auto;
+      text-align: center;
+    }
+    
+    /* Product Slider */
+    .container {
+      margin-top: 80px;
+      padding: 1rem 0.5rem;
+    }
+    
+    .slide {
+      min-width: 100%;
+      flex: 0 0 100%;
+    }
+    
+    .product-image {
+      height: 220px;
+    }
+    
+    .slider-nav {
+      width: 36px;
+      height: 36px;
+    }
+    
+    /* Brand Grid */
+    .brand-grid {
+      grid-template-columns: 1fr;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    .brand-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    /* Categories Section */
+    .categories-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    /* Products Section */
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    /* Contact Modal */
+    .contact-modal-content {
+      margin: 10% auto;
+      width: 90%;
+      padding: 20px;
+    }
+    
+    .form-group label {
+      margin-bottom: 5px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      padding: 10px;
+    }
+    
+    .submit-button {
+      padding: 10px 15px;
+    }
+  }
+  
+  /* Small Mobile Styles (up to 480px) */
+  @media (max-width: 480px) {
+    /* Navigation */
+    .navbar {
+      padding: 0.6rem 0.8rem;
+    }
+    
+    .logo img {
+      width: 80px;
+    }
+    
+    .cart-amount {
+      font-size: 0.8rem;
+    }
+    
+    .cart-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    
+    /* Hero Section */
+    .shoe-container img {
+      max-width: 90%;
+    }
+    
+    #airpro {
+      font-size: 30px;
+      margin-top: 20px;
+    }
+    
+    #believe {
+      font-size: 2.2em;
+      margin-top: 200px;
+    }
+    
+    #comfort {
+      font-size: 1em;
+    }
+    
+    /* Product Cards */
+    .product-card {
+      margin-bottom: 15px;
+    }
+    
+    .product-info h3 {
+      font-size: 1rem;
+    }
+    
+    .product-price {
+      font-size: 1.1rem;
+    }
+    
+    .add-to-cart {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+    
+    /* Modal */
+    .modal-content {
+      width: 95%;
+      padding: 15px;
+    }
+    
+    .close-modal {
+      right: 10px;
+      top: 5px;
+    }
+  }
+  
+  /* JavaScript for Mobile Menu Toggle */
+  @media (max-width: 767px) {
+    /* Add this to your HTML if not already present */
+    .mobile-menu-toggle {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+}

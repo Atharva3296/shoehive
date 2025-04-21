@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOEHIVE - Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Cart Page Styles */
+        .cart-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .cart-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+        }
+        
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .order-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+        
+        .order-summary h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .summary-line.total {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            border-bottom: none;
+            margin-top: 10px;
+        }
+        
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn,
+        .continue-btn,
+        .clear-btn {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .checkout-btn {
+            background: #ff4d00;
+            color: white;
+        }
+        
+        .checkout-btn:hover {
+            background: #e64500;
+        }
+        
+        .continue-btn {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .continue-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .clear-btn {
+            background: #ffebee;
+            color: #d32f2f;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .clear-btn:hover {
+            background: #ffcdd2;
+        }
+        
+        /* Cart Item Styles */
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto auto;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .cart-item-price {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .quantity-value {
+            font-size: 16px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .cart-item-remove:hover {
+            color: #d32f2f;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .cart-empty h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .cart-empty p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .shop-now-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff4d00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .shop-now-button:hover {
+            background: #e64500;
+        }
+        
+        /* Cart Notification */
+        .cart-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .cart-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                grid-template-columns: 60px 1fr auto;
+                grid-template-rows: auto auto;
+            }
+            
+            .cart-item-image {
+                grid-row: span 2;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .cart-item-details {
+                grid-column: 2;
+                grid-row: 1;
+            }
+            
+            .cart-item-quantity {
+                grid-column: 2;
+                grid-row: 2;
+            }
+            
+            .cart-item-remove {
+                grid-column: 3;
+                grid-row: 1 / span 2;
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"><img src="shoehive.png" alt="SHOEHIVE" width="100" height="50" border-radius="50%"></a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/">HOME</a>
+            <a href="/shop">SHOP</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">MY ACCOUNT</a>
+                <div class="dropdown-menu">
+                    <a href="profile.html">Profile</a>
+                    <a href="/orders">Orders</a>
+                    <a href="/settings">Settings</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+
+        <div class="cart">
+            <span class="cart-amount">$0.00</span>
+            <div class="cart-icon">
+                <span class="cart-count">0</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM20 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg> 
+            </div>
+        </div>
+    </nav>
+
+    <div class="cart-container">
+        <h1 class="cart-title">Your Shopping Cart</h1>
+        
+        <div id="cart-content">
+            <!-- Cart items will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get cart items from localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartContent = document.getElementById('cart-content');
+            const cartCount = document.querySelector('.cart-count');
+            const cartAmount = document.querySelector('.cart-amount');
+            
+            // Update cart display
+            function updateCartDisplay() {
+                // Update count
+                let totalItems = 0;
+                cartItems.forEach(item => {
+                    totalItems += (item.quantity || 1);
+                });
+                
+                if (cartCount) cartCount.textContent = totalItems;
+                
+                // Calculate total
+                const total = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+                if (cartAmount) cartAmount.textContent = `$${total.toFixed(2)}`;
+                
+                // Save to localStorage
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                
+                // Render cart content
+                renderCart();
+            }
+            
+            // Render cart items
+            function renderCart() {
+                if (!cartContent) return;
+                
+                if (cartItems.length === 0) {
+                    cartContent.innerHTML = `
+                        <div class="cart-empty">
+                            <h3>Your cart is empty</h3>
+                            <p>Looks like you haven't added any items to your cart yet.</p>
+                            <a href="/" class="shop-now-button">Start Shopping</a>
+                        </div>
+                        <div class="order-summary">
+                            <h2>Order Summary</h2>
+                            <div class="summary-line">Subtotal $0.00</div>
+                            <div class="summary-line">Shipping $0.00</div>
+                            <div class="summary-line total">Total $0.00</div>
+                            <div class="cart-buttons">
+                                <button disabled class="checkout-btn">Proceed to Checkout</button>
+                                <button class="continue-btn" onclick="window.location.href='/'">Continue Shopping</button>
+                                <button disabled class="clear-btn">Clear Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Calculate subtotal and total
+                const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+                const shipping = subtotal > 0 ? 10 : 0; // $10 shipping fee
+                const total = subtotal + shipping;
+                
+                // Create cart items HTML
+                const cartItemsHTML = cartItems.map(item => `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity-value">${item.quantity || 1}</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="cart-item-remove">Remove</button>
+                    </div>
+                `).join('');
+                
+                // Create order summary HTML
+                const orderSummaryHTML = `
+                    <div class="order-summary">
+                        <h2>Order Summary</h2>
+                        <div class="summary-line">Subtotal $${subtotal.toFixed(2)}</div>
+                        <div class="summary-line">Shipping $${shipping.toFixed(2)}</div>
+                        <div class="summary-line total">Total $${total.toFixed(2)}</div>
+                        <div class="cart-buttons">
+                            <button class="checkout-btn">Proceed to Checkout</button>
+                            <button class="continue-btn" onclick="window.location.href='/'">Continue Shopping</button>
+                            <button class="clear-btn">Clear Cart</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Combine cart items and order summary
+                cartContent.innerHTML = `
+                    <div class="cart-grid">
+                        <div class="cart-items">
+                            ${cartItemsHTML}
+                        </div>
+                        ${orderSummaryHTML}
+                    </div>
+                `;
+                
+                // Add event listeners to quantity buttons and remove buttons
+                const decreaseButtons = document.querySelectorAll('.quantity-btn.decrease');
+                const increaseButtons = document.querySelectorAll('.quantity-btn.increase');
+                const removeButtons = document.querySelectorAll('.cart-item-remove');
+                const clearCartBtn = document.querySelector('.clear-btn');
+                const checkoutBtn = document.querySelector('.checkout-btn');
+                
+                if (decreaseButtons) {
+                    decreaseButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const itemId = this.closest('.cart-item').dataset.id;
+                            const itemIndex = cartItems.findIndex(item => item.id.toString() === itemId);
+                            
+                            if (itemIndex !== -1) {
+                                if (cartItems[itemIndex].quantity > 1) {
+                                    cartItems[itemIndex].quantity--;
+                                } else {
+                                    cartItems.splice(itemIndex, 1);
+                                }
+                                updateCartDisplay();
+                            }
+                        });
+                    });
+                }
+                
+                if (increaseButtons) {
+                    increaseButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const itemId = this.closest('.cart-item').dataset.id;
+                            const itemIndex = cartItems.findIndex(item => item.id.toString() === itemId);
+                            
+                            if (itemIndex !== -1) {
+                                cartItems[itemIndex].quantity = (cartItems[itemIndex].quantity || 1) + 1;
+                                updateCartDisplay();
+                            }
+                        });
+                    });
+                }
+                
+                if (removeButtons) {
+                    removeButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const itemId = this.closest('.cart-item').dataset.id;
+                            const itemIndex = cartItems.findIndex(item => item.id.toString() === itemId);
+                            
+                            if (itemIndex !== -1) {
+                                cartItems.splice(itemIndex, 1);
+                                updateCartDisplay();
+                            }
+                        });
+                    });
+                }
+                
+                if (clearCartBtn) {
+                    clearCartBtn.addEventListener('click', function() {
+                        if (confirm('Are you sure you want to clear your cart?')) {
+                            cartItems = [];
+                            updateCartDisplay();
+                        }
+                    });
+                }
+                
+                if (checkoutBtn) {
+                    checkoutBtn.addEventListener('click', function() {
+                        alert('Proceeding to checkout. This feature will be implemented soon!');
+                    });
+                }
+            }
+            
+            // Initialize cart display
+            updateCartDisplay();
+            
+            // Logout functionality
+            const logoutLink = document.getElementById('logout-link');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('user');
+                    window.location.href = '/';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOEHIVE - Shoe Shopping</title>
+    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="product-detail-modal.css">
+<link rel="stylesheet" href="product-detail.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="enhanced-nav-contact.css">
+    <script>
+        // Check if user is logged in, if not redirect to login page
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"><img src="shoehive.png" alt="SHOEHIVE" width="100" height="50" border-radius="50%"></a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/" class="active">HOME</a>
+            <a href="/shop">SHOP</a>
+            <script>
+              // Check if user is logged in
+              const user = JSON.parse(localStorage.getItem('user'));
+              document.write(user ? 
+                  `<div class="dropdown">
+                      <a href="#" class="dropdown-toggle">MY ACCOUNT</a>
+                      <div class="dropdown-menu">
+                          <a href="profile.html">Profile</a>
+                          <a href="/orders">Orders</a>
+                          <a href="/settings">Settings</a>
+                          <a href="#" id="logout-link">Logout</a>
+                      </div>
+                  </div>` : 
+                  `<a href="login.html">LOGIN</a>`
+              );
+          </script>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+
+        <div class="cart">
+            <span class="cart-amount">$0.00</span>
+            <div class="cart-icon">
+                <span class="cart-count">0</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM20 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg> 
+            </div>
+        </div>
+    </nav>
+    <div class="shoe-container">
+        <img src="sports-shoe4.png" alt="Shoehive">
+    </div>
+    <h1 id="airpro">AirPro X3</h1>
+    <h1 id="believe">UNBELIEVABLE </h1>
+    <h3 id="comfort">SPEED.COMFORT.</h3>
+    <div class="container">
+      <div class="product-slider">
+        <div class="slider-container">
+          <div class="slider-track">
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="runnning.jpg" alt="Running Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>DNK BLUE SHOES </h3>
+                  <p class="product-category">Workout</p>
+                  <div class="product-price">$120</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="running1.jpg" alt="Basketball Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>AirPro X3 Yellow </h3>
+                  <p class="product-category">Workout</p>
+                  <div class="product-price">$150</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="gym.jpeg" alt="Casual Sneakers">
+                </div>
+                <div class="product-info">
+                  <h3>Casual Sneakers</h3>
+                  <p class="product-category">Lifestyle</p>
+                  <div class="product-price">$95</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="nike.jpeg" alt="Hiking Boots">
+                </div>
+                <div class="product-info">
+                  <h3>Nike Air Force</h3>
+                  <p class="product-category">Athletic</p>
+                  <div class="product-price">$130</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="sports_training.jpeg" alt="Training Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>Puma Atlas </h3>
+                  <p class="product-category">CASUAL FOOTWEAR</p>
+                  <div class="product-price">$110</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- New Products Added -->
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="adidas.jpeg" alt="Adidas Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>Adidas Running Shoes</h3>
+                  <p class="product-category">RUNNING</p>
+                  <div class="product-price">$140</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="basketball.jpeg" alt="Basketball Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>Adidas D-Rose </h3>
+                  <p class="product-category">SPORTS</p>
+                  <div class="product-price">$160</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+    
+            <div class="slide">
+              <div class="product-card">
+                <div class="product-image">
+                  <img src="running2.jpeg" alt="Bacca Bucci Shoes">
+                </div>
+                <div class="product-info">
+                  <h3>Nike Air Jordan 1</h3>
+                  <p class="product-category">BASKETBALL</p>
+                  <div class="product-price">$180</div>
+                  <button class="add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <button class="slider-nav prev" aria-label="Previous product">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="slider-nav next" aria-label="Next product">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="slider-dots"></div>
+    </div>
+    <div class="containeer">
+      <h1>Select a Brand</h1>
+      
+      <!-- Brand Grid -->
+      <div class="brand-grid">
+          <div class="brand-square" data-brand="adidas">
+              <div class="brand-content">
+                  <h2>Adidas</h2>
+                  <p>Click to view categories</p>
+              </div>
+          </div>
+          
+          <div class="brand-square" data-brand="nike">
+              <div class="brand-content">
+                  <h2>Nike</h2>
+                  <p>Click to view categories</p>
+              </div>
+          </div>
+          
+          <div class="brand-square" data-brand="puma">
+              <div class="brand-content">
+                  <h2>Puma</h2>
+                  <p>Click to view categories</p>
+              </div>
+          </div>
+          
+          <div class="brand-square" data-brand="bata">
+              <div class="brand-content">
+                  <h2>Bata</h2>
+                  <p>Click to view categories</p>
+              </div>
+          </div>
+      </div>
+
+      <!-- Categories Section -->
+      <div class="categories-section" id="categories-section">
+          <div class="section-header">
+              <h2 id="selected-brand">Select a Category</h2>
+              <button class="close-btn" id="close-categories">&times;</button>
+          </div>
+          <div class="categories-grid" id="categories-grid">
+              <div class="category-card" data-category="mens">
+                  <div class="category-image">
+                      <img src="categorymen.png" alt="Men's">
+                  </div>
+                  <h3>Men's Collection</h3>
+              </div>
+              <div class="category-card" data-category="womens">
+                  <div class="category-image">
+                      <img src="categorywomen.png" alt="Women's">
+                  </div>
+                  <h3>Women's Collection</h3>
+              </div>
+              <div class="category-card" data-category="kids">
+                  <div class="category-image">
+                      <img src="categorykid.png" alt="Kids">
+                  </div>
+                  <h3>Kids Collection</h3>
+              </div>
+          </div>
+      </div>
+
+      <!-- Products Section -->
+      <div class="products-section" id="products-section">
+          <div class="section-header">
+              <div class="breadcrumb" id="breadcrumb">
+                  <span id="brand-name"></span> &gt; 
+                  <span id="category-name"></span>
+              </div>
+              <button class="close-btn" id="close-products">&times;</button>
+          </div>
+          <div class="products-grid" id="products-grid"></div>
+      </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="modal" id="product-modal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-body" id="modal-body"></div>
+      </div>
+  </div>
+  <div id="contact-modal" class="contact-modal">
+    <div class="contact-modal-content">
+      <span class="close-contact-modal">&times;</span>
+      <div class="contact-form-container">
+        <h2>Contact Us</h2>
+        <p>Have a question or feedback? We'd love to hear from you!</p>
+        
+        <form id="contact-form" action="https://formspree.io/f/movaqvan" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="contact-email">Your Email</label>
+            <input type="email" id="contact-email" name="email" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" name="product" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="product-images">Upload Product Images</label>
+            <input type="file" id="product-images" name="images" accept="image/*" multiple>
+          </div>
+        
+          <div class="form-group">
+            <label for="contact-message">Your Message</label>
+            <textarea id="contact-message" name="message" required></textarea>
+          </div>
+        
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+        
+        
+        <div id="form-success" class="form-success">
+          Thank you for your message! We'll get back to you soon.
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+    <script src="product-detail-consistent.js"></script>
+    <script src="home-product-rotation.js"></script>
+</body>
+</html>
