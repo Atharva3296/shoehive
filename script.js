@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
           id: "nm1",
           name: "Jordan Air 1",
           price: 170,
-          image: "jordan air.webp",
+          image: "jordan-air.webp",
           description: "Iconic Air Max cushioning for maximum comfort.",
         },
         {
